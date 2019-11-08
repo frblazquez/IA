@@ -1,0 +1,843 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{misioneros}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{EL PROBLEMA DE LOS MISIONEROS -\/-\/- PRÁCTICA 2 IA GRUPO
+5}\label{el-problema-de-los-misioneros-----pruxe1ctica-2-ia-grupo-5}
+
+    \subsubsection{Definición del problema siguiendo el esquema
+proporcionado por
+AIMA}\label{definiciuxf3n-del-problema-siguiendo-el-esquema-proporcionado-por-aima}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} Importamos la librería search de AIMA}
+        \PY{k+kn}{from} \PY{n+nn}{search} \PY{k}{import} \PY{o}{*}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Definición del problema de los misioneros según el esquema de AIMA}
+        \PY{k}{class} \PY{n+nc}{ProblemaMisioneros}\PY{p}{(}\PY{n}{Problem}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{} Clase problema (formalizacion de nuestro problema) siguiendo la}
+        \PY{l+s+sd}{        estructura que aima espera que tengan los problemas.\PYZsq{}\PYZsq{}\PYZsq{}}
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{initial}\PY{p}{,} \PY{n}{goal}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+                \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Inicializacion de nuestro problema.\PYZsq{}\PYZsq{}\PYZsq{}}
+                \PY{n}{Problem}\PY{o}{.}\PY{n+nf+fm}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{initial}\PY{p}{,} \PY{n}{goal}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{} cada accion tiene un texto para identificar al operador y despues una tupla con la}
+                \PY{c+c1}{\PYZsh{} cantidad de misioneros y canibales que se mueven en la canoa}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}actions} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1c}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1m}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2c}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2m}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1m1c}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+        
+            \PY{k}{def} \PY{n+nf}{actions}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{s}\PY{p}{)}\PY{p}{:}
+                \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Devuelve las acciones validas para un estado.\PYZsq{}\PYZsq{}\PYZsq{}}
+                \PY{c+c1}{\PYZsh{} las acciones validas para un estado son aquellas que al aplicarse}
+                \PY{c+c1}{\PYZsh{} nos dejan en otro estado valido}
+                \PY{k}{return} \PY{p}{[}\PY{n}{a} \PY{k}{for} \PY{n}{a} \PY{o+ow}{in} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}actions} \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}is\PYZus{}valid}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{result}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n}{a}\PY{p}{)}\PY{p}{)}\PY{p}{]}
+        
+            \PY{k}{def} \PY{n+nf}{\PYZus{}is\PYZus{}valid}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{s}\PY{p}{)}\PY{p}{:}
+                \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Determina si un estado es valido o no.\PYZsq{}\PYZsq{}\PYZsq{}}
+                \PY{c+c1}{\PYZsh{} un estado es valido si no hay mas canibales que misioneros en ninguna}
+                \PY{c+c1}{\PYZsh{} orilla, y si las cantidades estan entre 0 y 3}
+                \PY{k}{return} \PY{p}{(}\PY{n}{s}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o+ow}{or} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)} \PY{o+ow}{and} \PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3} \PY{o}{\PYZhy{}} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{p}{(}\PY{l+m+mi}{3} \PY{o}{\PYZhy{}} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)} \PY{o+ow}{or} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{)} \PY{o+ow}{and} \PY{p}{(}\PY{l+m+mi}{0} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{3}\PY{p}{)} \PY{o+ow}{and} \PY{p}{(}\PY{l+m+mi}{0} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{3}\PY{p}{)}
+        
+            \PY{k}{def} \PY{n+nf}{result}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{s}\PY{p}{,} \PY{n}{a}\PY{p}{)}\PY{p}{:}
+                \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}Devuelve el estado resultante de aplicar una accion a un estado}
+        \PY{l+s+sd}{           determinado.\PYZsq{}\PYZsq{}\PYZsq{}}
+                \PY{c+c1}{\PYZsh{} el estado resultante tiene la canoa en el lado opuesto, y con las}
+                \PY{c+c1}{\PYZsh{} cantidades de misioneros y canibales actualizadas segun la cantidad}
+                \PY{c+c1}{\PYZsh{} que viajaron en la canoa}
+                \PY{k}{if} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                    \PY{k}{return} \PY{p}{(}\PY{n}{s}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+                \PY{k}{else}\PY{p}{:}
+                    \PY{k}{return} \PY{p}{(}\PY{n}{s}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{s}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Creación del problema dado un estado inicial y un estado objetivo}
+        \PY{n}{estado} \PY{o}{=} \PY{n}{ProblemaMisioneros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{a) Resolved el problema por los distintos métodos de
+búsqueda
+vistos:}\label{a-resolved-el-problema-por-los-distintos-muxe9todos-de-buxfasqueda-vistos}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} Solución por búsqueda en anchura sin control de estados repetidos}
+        \PY{n}{breadth\PYZus{}first\PYZus{}tree\PYZus{}search}\PY{p}{(}\PY{n}{estado}\PY{p}{)}\PY{o}{.}\PY{n}{solution}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} [('2c', (0, 2)),
+         ('1c', (0, 1)),
+         ('2c', (0, 2)),
+         ('1c', (0, 1)),
+         ('2m', (2, 0)),
+         ('1m1c', (1, 1)),
+         ('2m', (2, 0)),
+         ('1c', (0, 1)),
+         ('2c', (0, 2)),
+         ('1c', (0, 1)),
+         ('2c', (0, 2))]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Solución por búsqueda en anchura con control de estados repetidos}
+        \PY{n}{breadth\PYZus{}first\PYZus{}graph\PYZus{}search}\PY{p}{(}\PY{n}{estado}\PY{p}{)}\PY{o}{.}\PY{n}{solution}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} [('2c', (0, 2)),
+         ('1c', (0, 1)),
+         ('2c', (0, 2)),
+         ('1c', (0, 1)),
+         ('2m', (2, 0)),
+         ('1m1c', (1, 1)),
+         ('2m', (2, 0)),
+         ('1c', (0, 1)),
+         ('2c', (0, 2)),
+         ('1c', (0, 1)),
+         ('2c', (0, 2))]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} Solución por búsqueda en profundidad sin control de estados repetidos}
+        \PY{n}{depth\PYZus{}first\PYZus{}graph\PYZus{}search}\PY{p}{(}\PY{n}{estado}\PY{p}{)}\PY{o}{.}\PY{n}{solution}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} [('1m1c', (1, 1)),
+         ('1m', (1, 0)),
+         ('2c', (0, 2)),
+         ('1c', (0, 1)),
+         ('2m', (2, 0)),
+         ('1m1c', (1, 1)),
+         ('2m', (2, 0)),
+         ('1c', (0, 1)),
+         ('2c', (0, 2)),
+         ('1m', (1, 0)),
+         ('1m1c', (1, 1))]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} NO FINALIZA \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{c+c1}{\PYZsh{} Solución por búsqueda en profundidad sin control de estados repetidos}
+        \PY{c+c1}{\PYZsh{} depth\PYZus{}first\PYZus{}tree\PYZus{}search(estado).solution()}
+\end{Verbatim}
+
+
+    \subsubsection{b) Analizad el coste de las soluciones
+encontradas:}\label{b-analizad-el-coste-de-las-soluciones-encontradas}
+
+    \paragraph{Búsqueda en anchura sin control de
+repetidos:}\label{buxfasqueda-en-anchura-sin-control-de-repetidos}
+
+Encuentra una solución que requiere de once operaciones. Además,
+suponiendo que cuando hablamos del coste nos referimos al número de
+operaciones ejecutadas (con cada operación por tanto de coste uno), el
+algoritmo de búsqueda en anchura alcanza siempre una solución óptima. La
+solución dada requiere el mínimo número de operaciones para llegar al
+estado objetivo.
+
+    \paragraph{Búsqueda en anchura con control de
+repetidos:}\label{buxfasqueda-en-anchura-con-control-de-repetidos}
+
+Encuentra una solución que requiere de once operaciones, de hecho,
+encuentra la misma que el algoritmo que no controla nodos repetidos.
+Esto es lógico porque la naturaleza del algoritmo es la misma, completo,
+por lo que siempre que exista solución encuentra una solución y óptimo
+(gracias a que suponemos el coste igual al número de operaciones), por
+lo que encuentra una solución que requiere el mínimo número de
+operaciones.
+
+¿Qué diferencia hallamos entonces entre estos dos algoritmos hermanos?
+El primero al no requerir de estructuras de datos adicionales para el
+control de nodos repetidos ni requerir de operaciones adicionales de
+comprobación es un algoritmo válido e incluso más rápido cuando existen
+soluciones con un bajo número de operaciones. Cuando este no es el caso,
+el algoritmo analiza árboles de exploración enteros repetidas veces
+(árboles que crecen exponencialmente) por lo que el coste en tiempo es
+mayor.
+
+    \paragraph{Búsqueda en profundidad sin control de
+repetidos:}\label{buxfasqueda-en-profundidad-sin-control-de-repetidos}
+
+En este caso el algoritmo no es capaz de hallar una solución al problema
+ni de terminar su ejecución. Esto es debido a que al no existir un
+control de nodos explorados y, más especialmente, a la existencia de
+operaciones inversas el algoritmo puede caer en bucles infinitos
+explorando ciclos.
+
+Por ejemplo, la siguiente secuencia no atraviesa estados prohibidos y
+genera un bucle:
+
+S0 -\textgreater{} Mover dos caníbales derecha -\textgreater{} Mover dos
+caníbales izquierda -\textgreater{} S0
+
+    \paragraph{Búsqueda en profundidad con control de
+repetidos:}\label{buxfasqueda-en-profundidad-con-control-de-repetidos}
+
+Al añadir el control de nodos repetidos el algoritmo nunca examinará un
+nodo ya explorado lo que impide que se creen bucles infinitos debidos a
+la exploración de ciclos en el grafo de estados y operaciones de nuestro
+problema. Con este algoritmo se halla una solución de coste once
+operaciones por lo que sabemos que es óptima.
+
+    \subsubsection{c) Analizad el coste en memoria de los distintos
+algoritmos y la causa de sus
+diferencias:}\label{c-analizad-el-coste-en-memoria-de-los-distintos-algoritmos-y-la-causa-de-sus-diferencias}
+
+    \paragraph{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-}\label{section}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} Ampliamos la clase con atributos para realizar las métricas de memoria:}
+        \PY{k}{class} \PY{n+nc}{ProblemaConMetricas}\PY{p}{(}\PY{n}{Problem}\PY{p}{)}\PY{p}{:}
+        
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Clase extendida para incorporar atributos para la medida del coste de ejecución\PYZdq{}\PYZdq{}\PYZdq{}} 
+                 
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{problem}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{initial} \PY{o}{=} \PY{n}{problem}\PY{o}{.}\PY{n}{initial}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{problem} \PY{o}{=} \PY{n}{problem}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{analizados}  \PY{o}{=} \PY{l+m+mi}{0}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{goal} \PY{o}{=} \PY{n}{problem}\PY{o}{.}\PY{n}{goal}
+        
+            \PY{k}{def} \PY{n+nf}{actions}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{estado}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{problem}\PY{o}{.}\PY{n}{actions}\PY{p}{(}\PY{n}{estado}\PY{p}{)}
+            
+            \PY{k}{def} \PY{n+nf}{\PYZus{}is\PYZus{}valid}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{estado}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{problem}\PY{o}{.}\PY{n}{\PYZus{}is\PYZus{}valid}\PY{p}{(}\PY{n}{estado}\PY{p}{)}
+        
+            \PY{k}{def} \PY{n+nf}{result}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{estado}\PY{p}{,} \PY{n}{accion}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{problem}\PY{o}{.}\PY{n}{result}\PY{p}{(}\PY{n}{estado}\PY{p}{,} \PY{n}{accion}\PY{p}{)}
+        
+            \PY{k}{def} \PY{n+nf}{goal\PYZus{}test}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{estado}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{analizados} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{problem}\PY{o}{.}\PY{n}{goal\PYZus{}test}\PY{p}{(}\PY{n}{estado}\PY{p}{)}
+        
+            \PY{k}{def} \PY{n+nf}{coste\PYZus{}de\PYZus{}aplicar\PYZus{}accion}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{estado}\PY{p}{,} \PY{n}{accion}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{problem}\PY{o}{.}\PY{n}{coste\PYZus{}de\PYZus{}aplicar\PYZus{}accion}\PY{p}{(}\PY{n}{estado}\PY{p}{,}\PY{n}{accion}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{k}{def} \PY{n+nf}{resuelve\PYZus{}y\PYZus{}muestra\PYZus{}metricas}\PY{p}{(}\PY{n}{problema}\PY{p}{,} \PY{n}{algoritmo}\PY{p}{,} \PY{n}{h}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+             
+             \PY{k}{if} \PY{n}{h}\PY{p}{:} \PY{n}{sol}\PY{o}{=} \PY{n}{algoritmo}\PY{p}{(}\PY{n}{problema}\PY{p}{,} \PY{n}{h}\PY{p}{)}\PY{o}{.}\PY{n}{solution}\PY{p}{(}\PY{p}{)}
+             \PY{k}{else}\PY{p}{:} \PY{n}{sol}\PY{o}{=} \PY{n}{algoritmo}\PY{p}{(}\PY{n}{problema}\PY{p}{)}\PY{o}{.}\PY{n}{solution}\PY{p}{(}\PY{p}{)}
+                 
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Longitud de la solución: }\PY{l+s+si}{\PYZob{}0\PYZcb{}}\PY{l+s+s2}{. Nodos analizados: }\PY{l+s+si}{\PYZob{}1\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sol}\PY{p}{)}\PY{p}{,}\PY{n}{problema}\PY{o}{.}\PY{n}{analizados}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{problema\PYZus{}misioneros} \PY{o}{=} \PY{n}{ProblemaMisioneros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \paragraph{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-}\label{section}
+
+    \subparagraph{Búsqueda en anchura sin control de
+repetidos:}\label{buxfasqueda-en-anchura-sin-control-de-repetidos}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{time}
+         breadth\PYZus{}first\PYZus{}tree\PYZus{}search(estado).solution()
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+CPU times: user 113 ms, sys: 772 µs, total: 114 ms
+Wall time: 113 ms
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} [('2c', (0, 2)),
+          ('1c', (0, 1)),
+          ('2c', (0, 2)),
+          ('1c', (0, 1)),
+          ('2m', (2, 0)),
+          ('1m1c', (1, 1)),
+          ('2m', (2, 0)),
+          ('1c', (0, 1)),
+          ('2c', (0, 2)),
+          ('1c', (0, 1)),
+          ('2c', (0, 2))]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{timeit}
+         breadth\PYZus{}first\PYZus{}tree\PYZus{}search(estado).solution()
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+10 loops, best of 3: 67.3 ms per loop
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{problema\PYZus{}metricas}   \PY{o}{=} \PY{n}{ProblemaConMetricas}\PY{p}{(}\PY{n}{problema\PYZus{}misioneros}\PY{p}{)}
+         \PY{n}{resuelve\PYZus{}y\PYZus{}muestra\PYZus{}metricas}\PY{p}{(}\PY{n}{problema\PYZus{}metricas}\PY{p}{,} \PY{n}{breadth\PYZus{}first\PYZus{}tree\PYZus{}search}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Longitud de la solución: 11. Nodos analizados: 11878
+
+    \end{Verbatim}
+
+    \subparagraph{Búsqueda en anchura con control de
+repetidos:}\label{buxfasqueda-en-anchura-con-control-de-repetidos}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{time}
+         breadth\PYZus{}first\PYZus{}graph\PYZus{}search(estado).solution()
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+CPU times: user 154 µs, sys: 6 µs, total: 160 µs
+Wall time: 164 µs
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}50}]:} [('2c', (0, 2)),
+          ('1c', (0, 1)),
+          ('2c', (0, 2)),
+          ('1c', (0, 1)),
+          ('2m', (2, 0)),
+          ('1m1c', (1, 1)),
+          ('2m', (2, 0)),
+          ('1c', (0, 1)),
+          ('2c', (0, 2)),
+          ('1c', (0, 1)),
+          ('2c', (0, 2))]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{timeit}
+         breadth\PYZus{}first\PYZus{}graph\PYZus{}search(estado).solution()
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+10000 loops, best of 3: 79.6 µs per loop
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{problema\PYZus{}metricas}   \PY{o}{=} \PY{n}{ProblemaConMetricas}\PY{p}{(}\PY{n}{problema\PYZus{}misioneros}\PY{p}{)}
+         \PY{n}{resuelve\PYZus{}y\PYZus{}muestra\PYZus{}metricas}\PY{p}{(}\PY{n}{problema\PYZus{}metricas}\PY{p}{,} \PY{n}{breadth\PYZus{}first\PYZus{}graph\PYZus{}search}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Longitud de la solución: 11. Nodos analizados: 15
+
+    \end{Verbatim}
+
+    \subparagraph{Búsqueda en profundidad con control de
+repetidos:}\label{buxfasqueda-en-profundidad-con-control-de-repetidos}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{time}
+         depth\PYZus{}first\PYZus{}graph\PYZus{}search(estado).solution()
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+CPU times: user 151 µs, sys: 6 µs, total: 157 µs
+Wall time: 160 µs
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}51}]:} [('1m1c', (1, 1)),
+          ('1m', (1, 0)),
+          ('2c', (0, 2)),
+          ('1c', (0, 1)),
+          ('2m', (2, 0)),
+          ('1m1c', (1, 1)),
+          ('2m', (2, 0)),
+          ('1c', (0, 1)),
+          ('2c', (0, 2)),
+          ('1m', (1, 0)),
+          ('1m1c', (1, 1))]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{timeit}
+         depth\PYZus{}first\PYZus{}graph\PYZus{}search(estado).solution()
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+10000 loops, best of 3: 78.4 µs per loop
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{problema\PYZus{}metricas}   \PY{o}{=} \PY{n}{ProblemaConMetricas}\PY{p}{(}\PY{n}{problema\PYZus{}misioneros}\PY{p}{)}
+         \PY{n}{resuelve\PYZus{}y\PYZus{}muestra\PYZus{}metricas}\PY{p}{(}\PY{n}{problema\PYZus{}metricas}\PY{p}{,} \PY{n}{depth\PYZus{}first\PYZus{}graph\PYZus{}search}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Longitud de la solución: 11. Nodos analizados: 12
+
+    \end{Verbatim}
+
+    \subparagraph{Búsqueda en profundidad sin control de
+repetidos:}\label{buxfasqueda-en-profundidad-sin-control-de-repetidos}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} NO FINALIZA \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{c+c1}{\PYZsh{} \PYZpc{}\PYZpc{}time}
+        \PY{c+c1}{\PYZsh{} depth\PYZus{}first\PYZus{}tree\PYZus{}search(estado).solution()}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} NO FINALIZA \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{c+c1}{\PYZsh{} \PYZpc{}\PYZpc{}timeit}
+        \PY{c+c1}{\PYZsh{} depth\PYZus{}first\PYZus{}tree\PYZus{}search(estado).solution()}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} NO FINALIZA \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{c+c1}{\PYZsh{} problema\PYZus{}metricas   = ProblemaConMetricas(problema\PYZus{}misioneros)}
+        \PY{c+c1}{\PYZsh{} resuelve\PYZus{}y\PYZus{}muestra\PYZus{}metricas(problema\PYZus{}metricas, depth\PYZus{}first\PYZus{}tree\PYZus{}search)}
+\end{Verbatim}
+
+
+    \subsubsection{d) ¿Qué algoritmo consideras mejor? Razonad la
+respuesta:}\label{d-quuxe9-algoritmo-consideras-mejor-razonad-la-respuesta}
+
+    Está claro en esta situación que el algoritmo de búsqueda en profundidad
+sin control de repetidos no puede ser el mejor por no ser ni siquiera
+válido. De los restantes observamos que la búsqueda en anchura sin
+control de repetidos genera también una enorme cantidad de nodos
+explorados (12000 frente a los 12 de la búsqueda en profundidad con
+control de repetidos) y que a su vez su tiempo de ejecución es también
+del orden de mil veces mayor a su versión con control de ciclos. Esto es
+debido a que gracias a la representación tan sencilla del problema (con
+a penas tres valores enteros) las comprobaciones son de bajísimo coste
+algorítmico.
+
+Por tanto, para este problema queda patente que el control de ciclos
+incrementa el coste de las iteraciones ridículamente y reduce en órdenes
+exponenciales (en función de la profundidad de las soluciones
+encontradas) el número de nodos analizados. De los dos alogritmos con
+control de repeticiones el de búsqueda en profundidad parece ser el
+mejor debido a la existencia de múltiples soluciones distribuidas por el
+árbol de exploración. La existencia de soluciones a baja profundidad
+hace la búsqueda en anchura también una opción válida y eficaz.
+
+    \subsubsection{Ejercicio opcional. Define alguna heurística y estudia
+las propiedades del algoritmo
+A*}\label{ejercicio-opcional.-define-alguna-heuruxedstica-y-estudia-las-propiedades-del-algoritmo-a}
+
+    La lógica parece indicarnos que cuantos más misioneros y caníbales haya
+en la orilla derecha más cerca de la solución estamos. Como bien se
+explica en el temario de la asignatura, dentro de las propias
+condiciones del problema se especifica que no se puede llevar a más de
+dos personas en la lancha. Es por esto que para llevar k personas de la
+orilla izquierda a la derecha necesitaremos como mínimo k/2 viajes en la
+lancha (de hecho generalmente podríamos crear una heurística más
+informada gracias a que únicamente tenemos una balsa y, por tanto, los
+viajes de vuelta serán imprescindibles en ciertos casos). Necesitar como
+mínimo k/2 viajes (con k el número de personas en la orilla izquierda)
+nos hace ver que la heurística definida es en efecto consistente.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Heurística elegida: (Número de personas en la orilla izquierda) / (2 = Capacidad de la barca)}
+         \PY{k}{def} \PY{n+nf}{heuristica}\PY{p}{(}\PY{n}{node}\PY{p}{)}\PY{p}{:}
+             \PY{n}{state} \PY{o}{=} \PY{n}{node}\PY{o}{.}\PY{n}{state}
+             \PY{k}{return} \PY{p}{(}\PY{n}{state}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{n}{state}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{astar\PYZus{}search}\PY{p}{(}\PY{n}{problema\PYZus{}misioneros}\PY{p}{,} \PY{n}{heuristica}\PY{p}{)}\PY{o}{.}\PY{n}{solution}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} [('1m1c', (1, 1)),
+          ('1m', (1, 0)),
+          ('2c', (0, 2)),
+          ('1c', (0, 1)),
+          ('2m', (2, 0)),
+          ('1m1c', (1, 1)),
+          ('2m', (2, 0)),
+          ('1c', (0, 1)),
+          ('2c', (0, 2)),
+          ('1c', (0, 1)),
+          ('2c', (0, 2))]
+\end{Verbatim}
+            
+    \paragraph{Estudiamos ahora las propiedades de la heurística
+dada}\label{estudiamos-ahora-las-propiedades-de-la-heuruxedstica-dada}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{time}
+         astar\PYZus{}search(estado, heuristica).solution()
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+CPU times: user 470 µs, sys: 24 µs, total: 494 µs
+Wall time: 501 µs
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:} [('1m1c', (1, 1)),
+          ('1m', (1, 0)),
+          ('2c', (0, 2)),
+          ('1c', (0, 1)),
+          ('2m', (2, 0)),
+          ('1m1c', (1, 1)),
+          ('2m', (2, 0)),
+          ('1c', (0, 1)),
+          ('2c', (0, 2)),
+          ('1c', (0, 1)),
+          ('2c', (0, 2))]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{o}{\PYZpc{}\PYZpc{}}\PY{k}{timeit}
+         astar\PYZus{}search(estado, heuristica).solution()
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+10000 loops, best of 3: 143 µs per loop
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{n}{problema\PYZus{}metricas}   \PY{o}{=} \PY{n}{ProblemaConMetricas}\PY{p}{(}\PY{n}{problema\PYZus{}misioneros}\PY{p}{)}
+         \PY{n}{resuelve\PYZus{}y\PYZus{}muestra\PYZus{}metricas}\PY{p}{(}\PY{n}{problema\PYZus{}metricas}\PY{p}{,} \PY{n}{astar\PYZus{}search}\PY{p}{,} \PY{n}{heuristica}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Longitud de la solución: 11. Nodos analizados: 14
+
+    \end{Verbatim}
+
+    Los resultados muestran que la búsqueda ciega en profundidad analiza
+menos nodos que la búsqueda guiada por nuestra heurística. Esto, junto
+con el mayor coste algorítmico causado por el añadido de complejidad de
+la heurística hace que también en los tiempos de ejecución se refleje un
+empeoramiento con respecto a los métodos de búsqueda no informados.
+
+La conclusión que podemos obtener es que, dada la escasa complejidad (en
+cuanto a tamaño del árbol de exploración) del problema y dada la
+existencia de soluciones a baja profundidad (con un bajo número de
+operaciones), el uso de una heurística si bien no supone un
+empeoramiento sustancial del tiempo ni memoria empleada en la resolución
+del problema (gracias a que la heurística es de cómputo en coste
+constante y bajo), si que es innecesaria para este problema en concreto.
+
+Si en vez de tratar el problema de los misioneros (3 misioneros y 3
+caníbales) tratásemos el problema de las Jornadas Mundiales de la
+Juventud (JMJ, con 3000 misioneros y 3000 jóvenes caníbales) el uso de
+una heurística sería absolutamente imprescindible y los métodos de
+búsqueda ciega resultarían inaplicables.
+
+    \subparagraph{Autores: Francisco Javier Blázquez Martínez, Boris
+Carballa Corredoira, Juan Carlos Villanueva
+Quirós}\label{autores-francisco-javier-bluxe1zquez-martuxednez-boris-carballa-corredoira-juan-carlos-villanueva-quiruxf3s}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
