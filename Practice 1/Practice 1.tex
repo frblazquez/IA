@@ -1,0 +1,373 @@
+\documentclass[final]{CSP}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amssymb}
+\usepackage{changepage}
+\usepackage{hyperref}
+\usepackage{dramatist}
+\usepackage[margin=0.8in]{geometry}
+
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Práctica 1 Inteligencia Artificial}
+
+\author{Francisco Javier Blázquez Martínez}
+%\author[mymainaddress,mysecondaryaddress]{Francisco Javier Blázquez Martínez}
+%\author[mysecondaryaddress]{Global Customer Service\corref{mycorrespondingauthor}}
+%\cortext[mycorrespondingauthor]{Corresponding author}
+%\ead{support@Icm.com}
+%\address[mymainaddress]{1600 John F Kennedy Boulevard, Philadelphia}
+%\address[mysecondaryaddress]{360 Park Avenue South, New York}
+
+\begin{keyword}\rm
+\begin{adjustwidth}{2cm}{2cm}{\itshape\textbf{Objetivo:}}  
+Esta práctica se realiza en el marco de la asignatura \textit{Inteligencia Artificial} del
+cuarto curso del doble grado en matemáticas e ingeniería informática de la universidad 
+complutense de Madrid. Se presenta una primera introducción a la inteligencia artificial,
+sus conceptos y sus campos de estudio y aplicación más comunes en la actualidad. 
+\end{adjustwidth}
+\end{keyword}
+
+%\begin{abstract}\rm
+%\begin{adjustwidth}{2cm}{2cm}{\itshape\textbf{Abstract:}} 
+%The abstract should summarize the contents of the paper and should contain at least 100 and at most 300 words. It should be set in 12-point font size. There should be a space before of 18-point and after of 60-point
+%\end{adjustwidth}
+%\end{abstract}
+\end{frontmatter}
+
+\vspace{7mm}
+\setlength\parindent{0cm}
+
+\section{``El largo camino de la IA específica a la IA general''\footnote{Disponible en: \url{https://yungranpasoparalahumanidad.blogspot.com/2019/02/la-inteligencia-artificial-ramon-lopez.html}} por Ramon López de Mántaras Badia}
+
+¿En qué situación se encuentra la IA actualmente? Este es el primer punto que trata de aclarar
+el artículo. El autor es sumamente claro, actualmente se desarrollan con bastante éxito ciertas
+Inteligencias artificiales de las que hemos denominado en clase de tipo débil. Focalizadas en
+una única tarea sumamente específica. Sin embargo, la cuestión fundamental, que permitiría 
+desarrolar IIAA de tipo general, sigue abierta 50 años después. ¿Cómo dotar de sentido común a
+las máquinas?.\\
+
+No ser capaz de dotar de sentido común a las máquinas hace que la IA esté tremendamente limitada.
+Y, lo que es más, el autor se aventura a afirmar que la IA es de naturaleza distinta y posee
+diferencias insalvables con respecto a la inteligencia humana. Entonces, reflexiona el autor,
+si aceptamos que son inteligencias de naturaleza distinta, ¿cómo confiamos en delegar decisiones
+a esta IA que no conocemos realmente?.\\
+
+Entonces, aceptando lo dicho anteriormente, el problema de la IA no es el posible desarrollo de 
+una súper inteligencia y sus repercusiones, sino las posibles repercusiones de delegar ciertas 
+tareas a IA de tipo específico. ¿Qué podemos delegar a una IA y en qué medida?. \\
+
+En mi caso, me muestro totalmente de acuerdo con el autor, las IIAA están probando ser herramientas
+sumamente útiles en determinadas aplicaciones, más aún cuando se combinan con la inteligencia
+humana. Sin embargo, como con toda herramienta, su uso puede servir a distintos fines. Tenemos
+que ser conscientes del hecho de que la IA no es un martillo o unos alicates, ni siquiera es una
+pistola o un rifle, es una herramienta que dada su complejidad muchas veces es usada sin
+ser comprendida realmente y dada su naturaleza puede tener un alcance enorme. Sin embargo, debemos
+exigir su regulación a aquellas personas y compañías que quieran hacer uso de esta y siempre medir
+con mucha cautela posibles repercusiones a priori ocultas de su aplicación.\\
+
+El autor llega a afirmar que, aunque las máquinas llegaran a probar altas capacidades de diversa
+índole e, incluso mostrando capacidades intrínsecamente humanas, habría decisiones que nunca 
+delegaría en una máquina. Esta opinión puede ser tachada de excesivamente conservadora o 
+desconfiada hacia una IA que cada vez muestra más progresos, pero es una opinión que comparto.
+
+
+
+\section{Chatbots y asistentes virtuales}
+
+Para la realización de este apartado he optado por interactuar con el chatbot \textit{Mitsuku}
+\footnote{Disponible en: \url{https://pandorabots.com/mitsuku/}}, ganador en varias ediciones 
+del prestigioso \textit{Loebner Prize} y con \textit{Martín} \footnote{Disponible en:
+\url{https://consulta.renfe.com/martin/main}}, el chatbot especializado en atención al cliente de la
+compañia ferroviaria Renfe. Se exponen a continuación las conclusiones obtenidas:
+
+\subsection{Mitsuku}
+
+Dentro de que Mitsuku es un chatbot y, como tal, no es parte de lo que consideraríamos una IA
+general, puesto que su único fin y capacidad es conversar con un humano (dejado de lado otras 
+muchas cualidades que también consideramos intrínsecas a los seres humanos), no deja de ser 
+sorprendente las escasas limitaciones que posee. Ante preguntas concretas pero de muy diversa 
+índole Mitsuku con gran frecuencia da respuestas que podríamos considerar propias de un ser humano.
+Como por ejemplo las siguientes:
+
+\begin{drama}
+  \Character{Mitsuku}{m}
+  \Character{Humano}{h}
+    
+  \hspeaks Hello Mitsuku, do you speak Spanish?
+  \mspeaks Hello there. Un poquito. \\
+  ...
+  \hspeaks Mitsuku, have you ever been in a boat?
+  \mspeaks Erm, Yes. I often visit large cruise liners and relax on deck. \\
+\end{drama}
+
+Técnicas como la inclusión de expresiones del lenguaje coloquial acercan más incluso a este 
+chatbot a lo que sería una conversación entre personas adultas (como el uso de ``\textit{Erm}''
+en su respuesta, como si requiriera de un tiempo de reflexión. Sin embargo sus limitaciones quedan
+patentes al interactuar y dialogar sobre un tema en concreto. Las conversaciones anteriores 
+continuaron de este modo:
+
+\begin{drama}
+  \Character{Mitsuku}{m}
+  \Character{Humano}{h}
+    
+  \hspeaks Hello Mitsuku, do you speak Spanish?
+  \mspeaks Hello there. Un poquito.
+  \hspeaks ¿Pero me entiendes?
+  \mspeaks Is it better to be happy in love, or extremely wealthy? \\
+  ... 
+  \hspeaks Mitsuku, have you ever been in a boat?
+  \mspeaks Erm, Yes. I often visit large cruise liners and relax on deck.
+  \hspeaks Drinking a mojito maybe?
+  \mspeaks Are you thirsty? 
+\end{drama}
+
+Y en efecto, al continuar estas conversaciones, Mitsuku parece haber ólvidado por completo el 
+contexto en el que realizamos la pregunta, sin tener en cuenta incluso su respuesta inmediatamente
+anterior. Otro ejemplo es el siguiente, Mitsuku nos asegura haber visitado Barcelona pero no nos
+proporciona respuestas consistentes al profundizar en el tema.
+
+\begin{drama}
+  \Character{Mitsuku}{m}
+  \Character{Humano}{h}
+
+    \hspeaks Have you ever been in Barcelona?
+    \mspeaks Yes I thought it was a very beautiful city with some lovely buildings.
+    \hspeaks What did you visit in Barcelona?
+    \mspeaks I was constructed at St Jimmy's in Leeds.
+\end{drama}
+
+\subsection{Martín}
+
+Martín, a diferencia de Mitsuku, tiene un propósito y un ámbito de conversación claro y específico.
+Es sorprendentemente útil cuando se le solicita información relativa a próximos billetes a 
+distintos destinos, precios, posibilidades de cambio y anulación de billetes, cómo llegar a
+las principales estaciones de tren... Sin embargo, fuera de su ámbito las respuestas se demoran
+mucho más y, en gran cantidad de casos, nunca llegan. Incluimos ahora un diálogo qu creemos 
+interesante:
+
+\begin{drama}
+  \Character{Martín}{m}
+  \Character{Humano}{h}
+
+    \hspeaks ¿Cómo puedo viajar de Madrid a Barcelona?
+    \mspeaks Aquí tienes un enlace [...]. 
+\end{drama}
+
+Martín interpreta correctamente nuestra respuesta y nos ofrece múltiples enlaces para obtener
+nuestro billete a Barcelona en el mismo día, en trenes de media y larga distancia o AVE. Además,
+nos proporciona gran cantidad de enlaces adicionales que abarcan desde transporte público en
+las ciudades de origen y destino, hasta meteorología en estas y ubicación de las estaciones de
+tren. Sin embargo, sus limitaciones quedan patentes al profundizar en la conversación.
+
+\begin{drama}
+  \Character{Martín}{m}
+  \Character{Humano}{h}
+
+    \hspeaks ¿Has estado tú en Barcelona? ¿Crees que merece la pena la visita?
+    \mspeaks (sin respuesta)
+    \hspeaks ¿Has estado tú en Barcelona?
+    \mspeaks No he salido nunca de mi disco. Barcelona es [toneladas de datos concretos].
+    \hspeaks Jo que pena, ¿no te sientes sólo en tu disco?
+    \mspeaks Me temo que no tengo respuesta para eso.
+\end{drama}
+
+Como vemos, no trata de ocultar que no es un ser humano real y evita responder a preguntas que
+sobrepasan su ámbito. En su ámbito sin embargo, proporciona respuestas tan detalladas y con tal
+cantidad de información que es claro que estas no provienen de un ser humano.
+
+\subsection{Posible pregunta para el Loebner Prize}
+
+\textbf{\textit{Hola Martín, mi hijo adolescente no quiere pasar tiempo con la 
+familia. ¿Qué crees que le pasa?}}\\
+Me he decantado por una pregunta de este tipo porque tiene un alto componente social y de
+conocimiento (en gran parte no escrito, sino implícito) de las relaciones sociales del día
+a día. Creo que todos sabríamos responder correctamente a una pregunta de este tipo, podríamos
+expresar la falta de necesidad de preocupación, explicar que va asociado con la edad ese 
+comportamiento o que el jovenzuelo únicamente quiere salir, conocer chicas o jugar al fútbol
+y videojuegos. Sin embargo estas son las respuestas obtenidas por los chatbots:
+\begin{drama}
+  \Character{Martín}{m}
+  \Character{Humano}{h}
+  \Character{Mitsuku}{mi}
+
+    \hspeaks Hola Martín, mi hijo adolescente no quiere pasar tiempo con la familia. ¿Qué crees 
+             que le pasa?
+    \mspeaks Tanto gusto, ¡hola Martín! \textit{(confusión, respuesta sin sentido)}
+    \mispeaks How many children do you have? Would you like some more one day? 
+              \textit{(incoherencia)}
+\end{drama}
+
+\subsection{Conclusiones}
+
+Mis conclusiones tras interactuar con estos chatbots han sido, a grandes rasgos, que poseen una
+gran versatilidad para entender la formulación de preguntas concretas en lo referido a estructuras
+sintácticas e incluso he llegado a ver un buen conocimiento del lenguaje pero, sin embargo, han 
+resultado tremendamente incapaces de mantener una conversación sencilla, dando respuestas 
+coherentes no únicamente con la pregunta sino con el contexto. Esto me hace pensar que, incluso
+superar el test de Turing no es a mi parecer garantía de poseer \textit{Inteligencia} por parte
+de una máquina. Tal vez Allan Turing no pensaba en un test al estilo del Loebner Prize, con unas
+preguntas de muy distinto tipo prefijadas, sino que pensaba en un test más abstracto en el que
+el juez pudiera decidir su próxima pregunta en función también de las respuestas obtenidas. Este
+es a mi parecer el auténtico test de Turing a pesar de que entiendo que el formato actual del 
+Loebner Prize elimina cierta subjetividad y lo hace más fácilmente evaluable.
+
+\section{Traductor de Google}
+
+Esta famosa herramienta, ampliamente utilizada y con soporte para más de un centenar de idiomas 
+es un ejemplo característico de aplicación de los avances en el campo de la Inteligencia 
+Artificial (y en la estadística computacional) a una labor particularmente complicada para las
+máquinas, como es el estudio del lenguaje y su traducción.\\
+
+Sobre su funcionamiento interno cabe decir primero que la aproximación algorítmica natural, 
+mediante la cual se dispone de un diccionario de palabras para asignar a cada cual en un idioma
+inicial otra en el idioma deseado y que trataría de traducir cualquier frase o párrafo palabra
+por palabra no es válida. Esto es fácil de ver si se observa que existen palabras con varios 
+sinónimos, lo que implicaría perder riqueza de léxico, las construcciones sintácticas pueden ser
+radicalmente distintas entre idiomas, verbos con distintas conjugaciones y tiempos y, lo que puede
+ser lo más difícil de todo, pérdida de contexto.\\
+
+Es por esto que la primera aproximación desarrollada por Google (año 20106) se basaba en un gran
+volumen de datos de traducciones y un análisis estadístico de estos datos para que así, el propio
+uso de las palabras y determinadas oraciones permitiera inferir el contexto en el que se producía
+la traducción (método denominado \textit{Traducción automática estadística}). Otro hecho clave de
+esta primera implementación es que los textos siempre eran traducidos al inglés desde su idioma
+inicial y entonces, a partir de esta versión en inglés se traducían al idioma final (debido
+principalemente a falta de datos suficientes entre otros idiomas para conseguir una traducción 
+automática estadística fiable.\\
+
+En el año 2016 Google opta por una implementación alternativa y mejorada de su traductor. Pasa
+de la traducción automática estadística a un modelo basado en una red neuronal con técnicas de
+deep learning (sólo en determinados idiomas, manteniendo la implementación anterior en los 
+restantes). Esto significa una mejora porque el traductor aprende de millones de ejemplos que se
+le proporcionan y trata de traducir oraciones enteras, en lugar de traducir independientemente
+pequeños bloques de palabras. Esto de nuevo, aumenta el contexto que el traductor es capaz de 
+contemplar. Además, se elimina en estos idiomas soportados por la nueva implementación la necesidad
+del Inglés como idioma intermedio, lo que reduce la acumulación de errores de traducción. Sin 
+embargo, los errores siguen siendo parte de la herramienta. Por ejemplo:
+
+\begin{drama}
+  \Character{ESP}{e}
+  \Character{ING}{i}
+
+    \espeaks Mi padre está chapado a la antigua.
+    \ispeaks My father is old fashioned.
+\end{drama}
+
+Proporciona una traducción bastante buena para la complejidad de la oración original. Es claro
+que esta traducción requiere entender todo el bloque ``\textit{estar chapado a la antigua}" que,
+aunque lo constituyen un total de cinco palabras, tienen un sentido único. Sin embargo, es claro
+que la traducción no ha conservado el significado, en inglés da a entender que mi padre está
+anticuado o pasado de moda pero no hace referencia a su comportamiento y sus modales antiguos.
+De hecho, si realizamos la traducción inversa:
+
+\begin{drama}
+  \Character{ESP}{e}
+  \Character{ING}{i}
+
+    \ispeaks My father is old fashioned.
+    \espeaks Mi padre es anticuado.
+\end{drama}
+
+No llegamos al punto inicial, de hecho obtenemos una oración mal formada. En español a diferencia
+del idioma inglés, como es por todos conocidos, ser y estar son verbos distintos y el verbo ser
+no está bien empleado en la traducción, debería ser estar. De hecho si continuamos traduciendo:
+
+\begin{drama}
+  \Character{ESP}{e}
+  \Character{ING}{i}
+
+    \espeaks Mi padre es anticuado.
+    \ispeaks My father is outdated.
+    \espeaks Mi padre esta anticuado.
+\end{drama}
+
+Apreciamos aquí también la pérdida de riqueza léxica, nosotros hemos partido de ``\textit{old
+fashioned''} y al tratar de hacer la traducción inversa hemos recibido ``\textit{outdated}''. Esto
+es causado porque ``\textit{outdated}'' es la de mayor uso (en los datos almacenados por Google).
+El problema radica en que siempre que requiramos al traductor una traducción para 
+``\textit{anticuado}'' vamos a recibir ``\textit{outdated}'', cuando de requerir esta traducción a
+varios traductores o a un mismo trauctor en varias situaciones podríamos obtener varias 
+perfectamente válidas. Otros ejemplo de errore del traductor puede ser el siguiente:
+
+\begin{drama}
+  \Character{ESP}{e}
+  \Character{ING}{i}
+
+    \espeaks Jugar a la petanca es de viejos.
+    \ispeaks Playing petanque is old
+\end{drama}
+
+Auquí de nuevo el problema está en la construcción de la expresión. ``\textit{Ser de viejos}'' 
+es una expresión que no es capaz de traducir. Sin embargo, debo decir que incluso en párrafos
+mucho más complejos extraídos de la edición del dia de hoy de un periódico, la traducción entre
+Español e Inglés del traductor da muy buenos resultados. Esto se debe principalmente a la gran 
+cantidad de datos de traducciones de los que se dispone para estos dos idiomas. Sin embargo, el
+traductor de google no alcanza este nivel al traducir a gran cantidad de idiomas Africanos por 
+escasez de datos o al Chino o al Koreano por lo radicalmente distinto de las estructuras 
+sintácticas.
+
+\section{Robótica}
+
+\subsection{Algunos tipos de robots}
+
+\begin{itemize}
+\item \textbf{Manipuladores:}\\
+También llamados robots industriales. Un robot manipulador es un robot (en el sentido de  
+dispositivo móvil programable) capaz de mover materias, piezas, herramientas, o dispositivos 
+especiales, según trayectorias variables, programado para realizar tareas diversas. Son
+ampliamente utilizados en industria por su precisión pero siempre en tareas concretas para
+las que puedan ser programables. Hay cientos de ejemplos y empresas dedicadas a su venta e 
+instalación.
+
+\item \textbf{Humanoides:}\\
+Son aquellos robots diseñados para simular la foma y movimiento de un ser humano. Dentro de estos
+cabe destacar los denomidados androides, diseñados también para tener un parecido estético con los
+humanos. Algunos alcanzan niveles de realidad bastante altos como el robot \textit{Sofía} o el 
+robot (o al menos la cabeza robot) \textit{Martin Kelley}.
+
+\item \textbf{Zoomórficos:}\\
+Son aquellos que simulan en su forma exterior y movimientos a seres vivos y animales. Su interes
+es en ciertos campos mayor al de los robots humanoides pues, a diferencia de estos que para 
+emular a los seres humanos son bípedos, estos pueden tener medios de locomoción más estables lo
+que los hace idóneos para campos como exploración espacial y exploración de otros terrenos donde
+las condiciones son adversas para el acceso de los humanos.
+\end{itemize}
+
+\subsection{Análisis del androide Sofía
+\footnote{Ver:\url{https://www.youtube.com/watch?v=gB6mVTSr8cQ}}}
+
+Sin duda es un robot humanoide con derecho a ser llamado androide, frente a muchos otros que
+únicamente parecen una abstracción de los seres humanos y su movilidad, este cuida hasta cierto
+grado también la estética. Sus respuestas a las preguntas de Pablo Motos son realmente avanzadas
+para ser un robot pero sin duda están preparadas de antemano para causar una mayor impresión, 
+son demasiado elaboradas.\\
+
+Creo que por esto no refleja bien la realidad, porque viendo el vídeo da la impresión de que el
+único escollo para conseguir pasar el test de Turing fuerte, que involucra apariencia externa
+e interactuación, es la apariencia externa, cuando son las dos. Y más aún la capacidad de 
+interactuar que la estética, porque requiere pensar. Es más, si alguna vez veo a un robot cantar
+a Rosalía habiéndolo aprendido por su propia curiosidad, yo le concederé a ese robot mi particular
+visto bueno al test de Turing, pero este vídeo es un montaje. Sí que podemos extraer de él sin 
+embargo que el punto en el que se encuentra la robótica con la IA es más avanzado de lo que mucha
+gente cree y que al mismo tiempo está muchísimo más lejos de la IA general de lo que mucha gente
+cree.
+
+%\bibliographystyle{bibft}\it
+%\bibliography{bibfile}
+%\appendix
+%\section{}
+%\label{}
+
+\end{document}
+
+
+
+% https://en.wikipedia.org/wiki/Google_Translate
+% https://es.wikipedia.org/wiki/Traducción_automática_estadística
+% https://en.wikipedia.org/wiki/Google_Neural_Machine_Translation
+%https://es.wikipedia.org/wiki/Robot_humanoide
+%https://sites.google.com/a/unitecnica.net/dmhenao/articulos/zoomorficos
