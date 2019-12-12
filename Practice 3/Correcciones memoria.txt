@@ -1,0 +1,46 @@
+Correcciones:
+
+    -> Pág 1: Resumen
+       "que no nos conduzcan a soluciones óptimas" -> "ramas para las que podemos encontrar una solución mejor o igual con estas restricciones"
+       "que permite reducir el coste de la solución encontrada" -> "que considera la ejecución simultáneamente de las acciones de los ascensores"
+
+    -> Pág 2: Logros
+       Aquí en los puntos tres y cuatro hay que aclarar que uno halla la solución óptima que minimiza el número de plantas que se desplazan
+       los ascensores y que el paralelizados halla solución óptima en cuanto a menor tiempo de ejecución.
+
+    -> Pág 2: 2.1 conceptos clave
+       No podamos ramas que no nos llevan a soluciones óptimas, podamos aquellas ramas para las que sabemos existe una solución mejor o igual
+       que sí que puede hallar nuestro algoritmo. Esto es también la corrección que me parece que tenemos que hacer en el resumen.
+
+       "no nos apotan" -> "no nos aportan"
+
+    -> Pág 3: 2.2 SolutionManager
+       Fusionador_acciones creo que no me aparece el formato como debería, en vez de dos marcadores me aparece un "+ Si un mismo ascensor coge ..."
+    
+    -> Pág 9: Conclusiones
+       Yo no pondría las mismas conclusiones, aprovecharía para poner las diferencias y qué es lo que ha cambiado con respecto a la primera versión:
+
+       Para poder considerar la actuación de varios ascensores de forma secuencial, únicamente hemos tenido que modificar las variables del estado
+       interno de los nodos que explorábamos haciendo que las variables antes presentes para cada ascensor se conviertan en una lista con estas 
+       variables, una para cada ascensor. Asimismo las acciones se generan de forma idéntica que antes pero para cada uno de los ascensores
+       presentes. 
+    
+    -> Pág 11: 4.4 Clase ascensores
+       Por qué aquí, que debería ser 3a versión (final salvo paralelizar) se dice que la clase ascensores es la que representa el problema en su primera
+       versión?? Hay que cambiarlo y poner que es la clase que representa el problema, no en su primera versión ni nada
+    
+    -> Pág 12: Restricciones
+       Lo mismo que antes, no descartamos ramas que no nos llevan a solución óptima sino aquellas para las que sabemos que vamos a llegar a una solución
+       igual o mejor. Además, me parece que repite lo que ya habíamos dicho de las restricciones en "Pág 3, 2.1 Conceptos clave". Yo lo reduciría para que
+       no fuera repetir lo mismo.
+
+    -> Pág 20: 4.6 Conclusiones
+       De nuevo no repetiría lo mismo que en las primeras conclusiones, pondría algo así:
+
+       Gracias a nuestra representación interna de los estados de los nodos de exploración (clase NodeState), añadir los rangos de desplazamiento de los
+       ascensores a consistido únicamente en añadir esta información a la propia clase NodeState y tener en cuenta en la generación de acciones esta 
+       restricción del movimiento de los ascensores.
+
+    
+
+       
