@@ -1,0 +1,66 @@
+// APARTADO 1:
+
+	-> ¿Se ha activado alguna regla? ¿en qué orden?
+	   No se ha activado ninguna porque hasta que no hacemos un reset no se
+	   cargan en la base de hechos inicial los definidos con deffacts. Por 
+	   tanto hasta que no hagamos un reset únicamente hemos definido reglas  
+	   pero no hechos que puedan activar esas reglas.
+
+	-> Para comenzar la ejecución hay que escribir (run).....
+	   Esta respuesta se engloba en la anterior también.
+	
+	-> Reiniciar el sistema (reset). ¿Qué hubiera pasado si reiniciamos con (clear)?
+	   Al reiniciar el sistema se cargan por fin los hechos definidos con deffacts.
+	   Entonces al hacer run estos hechos si que propician la ejecución de ciertas
+	   reglas. En el caso de este apartado la única regla que se ejecuta es la regla
+	   'nombreJuan'.
+
+
+
+// APARTADO 2: En el drive hay una foto del árbol genealógico
+	-> Ejecuta y observa el funcionamiento del archivo 'familia.clp'
+	   Para ver el resultado de la ejecución del archivo 'familia.clp' lo hemos
+	   cargado con la instrucción load y tras resetar nuestro sistema hemos ejecutado
+	   las reglas activadas una a una (run 1).
+	
+	   La apreciación más importante en este caso es que el resultado de la aplicación
+	   de todas las reglas son únicamente 'asserts'. Esto es, todas las reglas definidas
+	   son reglas de inferencia de nuevos hechos que se añaden a nuestra base de hechos.
+	   Tenemos por ejemplo la regla obvia de que el padre de mi padre es mi abuelo cuyo
+	   resultado es añadir el hecho final de que este individuo es mi abuelo.
+           Esto hace también que para el resultado final la estrategia de resolución de 
+	   conflictos sea indiferente pues una regla activada seguirá activa tras ejecutar
+	   otras reglas cualesquiera dado que estas únicamente añadirán hechos. Los hechos
+	   que activan una determinada regla seguirán presentes y tarde o temprano esta 
+	   se activará y se añadirá su hecho dado por 'assert' a la base de hechos.
+
+	-> Reglas primos añadidas:
+	   Mucho cuidado por que los hechos del enunciado de la práctica no son los que
+	   contiene el familia.clp. Para que si a y b son primos tengamos tanto el hecho
+	   (primos a b) como el hecho (primos b a) se consideran las simetrías y definimos
+	   el caso de primos porque las madres son hermanas, primos porque los padres son
+	   hermanos o el caso restante. No podemos usar ascendiente porque también considera
+	   ascendientes no directos (abuelos, bisabuelos...).
+	
+// APARTADO 3: 
+	-> Ejecuta el sistema, halla y corrige el fallo:
+	   El problema era que a la hora de modificar el caracter de una persona (para saber
+	   si es introvertido o extrovertido) en función de su número de amigos en facebook
+	   se tenía que esta regla se activaba únicamente en función del número de amigos 
+	   en facebook para cada persona. El resultado de esta regla además no modificaba 
+	   esta variable encargada de disparar su ejecución. Teníamos por tanto un bucle 
+	   infinito de ejecuciones.
+
+	   Se ha modificado el fichero para que inicialmente el valor por defecto del 
+	   caracter de una persona sea 'none' y que sólo si esta persona tiene caracter 
+	   como 'none', esto es, por definir, se pueda aplicar la regla de inicialización
+	   de caracter.
+
+	-> Una vez corregido, ejecuta el sistema y comenta los resultados:
+	   Aquí básicamente es ver que se comporta tal y como el enunciado especifica. 
+ 	   Descomentando la línea de la otra persona, Luis, homosexual de 35 años vemos
+	   que los cálculos de afinidad (que únicamente depende de gustos) se realizan
+	   correctamente pero que luego la compatibilidad de nuevo solo existe entre Pepe
+	   y Pepa. Pepe y Luis son afines por gustos pero no compatibles porque Pepe no 
+	   busca un hombre, sino una mujer. Al final nuestro sistema llega a una serie de
+	   citas concretadas válidas.
