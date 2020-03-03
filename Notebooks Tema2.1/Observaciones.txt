@@ -1,0 +1,65 @@
+// 00 Introducción a Python:
+    - Construcciones básicas
+    - Listas, conjuntos, diccionarios
+    - Funciones
+    - Módulos math, numpy, matplotlib.pyplot
+
+// 01 Carga y visualización de datos:
+    - Módulo sklearn (aprendizaje y algunos datasets incorporados)
+    - Módulo pandas (datos, análisis y visualización)
+    
+    - NO CAPAZ DE RUNNEAR LA ÚLTIMA CELDA!
+
+// 02 Intro Pandas:
+    - Módulo numpy (arrays multidimensionales)  http://www.numpy.org/
+    - Módulo pandas (tablas de datos)           https://pandas.pydata.org/
+    - Dataframes: Creación, visualización, análisis, acceso a datos estilo SQL,
+      edición de tablas, agrupar elementos, visualización gráfica.
+
+// 03 Clustering:
+    - Parámetro random state para eliminar aleatoriedad entre ejecuciones
+    - Generación de los datos
+    - Algoritmo K-Means, índice de Davies-Bouldin
+    - Descripción, análisis y visualización de los clusters
+    - Cambio de escala y normalización
+    - Algoritmo jerárquico aglomerativo
+
+    - KMEANS: https://scikit-learn.org/stable/modules/clustering.html#k-means
+    - JERÁRQUICO AGLOMERATIVO: https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering
+
+// 04 Distancia entre clusters en Hclustering:
+    - Análisis de distintos métodos de medir distancia entre clústeres
+    - Simple:
+    - Completo:
+    - Medio:
+
+    - NECESARIO LEER LA TEORÍA PARA ENTENDER ESTO!
+
+// 05 KNN y Validación cruzada:
+    - Obtención de los datos (dataset de sklearn)
+    - Normalización de los datos (StandardScaler de sklearn.preprocessing) 
+    - Conjuntos de entrenamiento y prueba
+    - Matriz de confusión
+    - Validación cruzada
+    - Valor óptimo de K en KNN
+
+// 06 KNN y métricas de clasificación:
+    - Valor óptimo de K en KNN con partes estratificadas (manteniendo proporción).
+    - Mismo proceso con datos escalados
+    - Métricas del modelo (sklearn.metrics)
+
+// 07 Árboles de decisión:
+    - Visualización
+    - Entrenamiento y medida
+    - Evitar sobreaprendizaje limitando la profundidad
+
+// 08 MLP Regresión:
+    - Tomar únicamente las variables más correlacionadas con el objetivo
+    - Reescalado de los datos
+    - Búsqueda del mejor coeficiente de regularización (validación cruzada)
+    - Análisis del error
+
+
+
+
+
